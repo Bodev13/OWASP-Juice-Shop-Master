@@ -10,8 +10,6 @@ All attacks were performed against an intentionally vulnerable application in a 
 
 Do not attempt to use these techniques on real systems without explicit authorization
 
-Video demonstration available in each challenge folder
-
 
 ## Table of Contents
 
@@ -78,3 +76,5 @@ http://127.0.0.1:3000
 
 ### Find Score Board
 [Find Score Board](challenge-find-score-board/)
+
+Video demonstration available in each challenge folder
