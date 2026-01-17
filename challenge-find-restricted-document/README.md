@@ -73,7 +73,7 @@ Broken Access Control / Directory Listing
 
 7. Open the restricted document
 
-   ![Open the restricted document](screenshots/confidential)
+   ![Open the restricted document](screenshots/confidential.png)
 
 ---
 
