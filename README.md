@@ -3,6 +3,16 @@
 This repository contains documentation for selected OWASP Juice Shop challenges.  
 The purpose of this project is to practice basic web application security testing techniques in a local and controlled environment.
 
+## Disclaimer
+The vulnerabilities and techniques documented in this repository are demonstrated strictly for educational purposes
+
+All attacks were performed against an intentionally vulnerable application in a local test environment
+
+Do not attempt to use these techniques on real systems without explicit authorization
+
+Video demonstration available in each challenge folder
+
+
 ## Table of Contents
 
 - [Prerequisites](#prerequisites)
@@ -12,6 +22,8 @@ The purpose of this project is to practice basic web application security testin
 - [Disclaimer](#disclaimer)
 
 ## Prerequisites
+The following prerequisites describe the environment and tools used during the course and the provided hacking lab to perform the documented challenges.
+
 
 - Kali Linux
 - Mozilla Firefox
@@ -66,13 +78,3 @@ http://127.0.0.1:3000
 
 ### Find Score Board
 [Find Score Board](challenge-find-score-board/)
-
-
-## Disclaimer
-The vulnerabilities and techniques documented in this repository are demonstrated strictly for educational purposes
-
-All attacks were performed against an intentionally vulnerable application in a local test environment
-
-Do not attempt to use these techniques on real systems without explicit authorization
-
-Video demonstration available in each challenge folder
