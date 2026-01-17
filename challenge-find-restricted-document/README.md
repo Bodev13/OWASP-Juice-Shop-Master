@@ -35,7 +35,13 @@ npm start
 
 ## Usage
 
-This challenge is performed in a local or controlled lab environment using the OWASP Juice Shop application. The user interacts with the application through a web browser to analyze publicly accessible links and test access control by manually modifying URLs.
+## Usage
+
+1. Start the OWASP Juice Shop application locally.
+2. Open a web browser.
+3. Navigate to `http://127.0.0.1:3000`.
+4. Ensure the application is running and accessible.
+5. Follow the steps described in the **Step-by-Step Solution** section to reproduce the challenge.
 
 ---
 
@@ -93,7 +99,6 @@ The presence of this link suggested that the application exposes files from an i
 
    During this process, the file `acquisitions.md` was discovered and opened.  
    This document represents a restricted internal resource, which should not be publicly accessible without authentication or authorization
-
 
    ![Open the restricted document](screenshots/confidential.png)
 
