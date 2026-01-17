@@ -8,9 +8,11 @@ The objective of this challenge is to locate a restricted document within the OW
 
 This challenge was solved in a controlled lab environment and is documented strictly for educational purposes.
 The OWASP Juice Shop application must be started locally before performing this challenge (see Quickstart section of the main repository).  
-The interaction is performed entirely through a web browser.
 
-The application can be started using:
+The interaction is performed entirely through a web browser
+
+The application can be started using
+
 ```bash
 npm start
 ```
@@ -18,6 +20,7 @@ npm start
 
 ## Table of Contents
 
+- [Disclaimer](#disclaimer)
 - [Usage](#usage)
 - [Recording of the Challenge](#recording-of-the-challenge)
 - [Vulnerability Category](#vulnerability-category)
@@ -26,7 +29,7 @@ npm start
 - [Result](#result)
 - [Security Impact](#security-impact)
 - [Mitigation](#mitigation)
-- [Disclaimer](#disclaimer)
+
 
 ---
 
@@ -128,23 +131,17 @@ Such findings would typically be classified as high severity in a penetration te
 
 ## Mitigation
 
-- Disable directory listing on the web server  
-  Ensure that directory indexing is disabled so that attackers cannot browse directory contents when no index file is present.  
-  This prevents unintended exposure of internal files through misconfigured paths.
+- Prevent public directory exposure via the web server  
+  Disable directory listing and ensure that internal directories (e.g. `/ftp/`) are not mapped to publicly accessible web paths.  
+  Sensitive files should be stored outside the web root and accessed only through controlled application logic.
 
 - Implement proper access control and authorization checks  
   Access to sensitive resources must be validated on the server side, ensuring that only authenticated and authorized users can access protected files and endpoints.  
-  A clear role-based access control (RBAC) model should be applied to define which users are allowed to access specific resources.
-
-- Do not expose internal directories via the web server  
-  Internal directories such as `/ftp/` should not be directly accessible through the web server configuration and should only be accessed through controlled application logic.
+  A clear role-based access control (RBAC) model should be applied to define which users are permitted to access specific resources.
 
 - Apply network-level security controls  
   Firewalls, reverse proxies, or network segmentation can be used to restrict access to internal services and limit traffic to trusted networks only.  
-  This reduces the attack surface even in case of application-level misconfigurations.
+  This provides an additional layer of protection in case of application-level misconfigurations.
 
 - Follow the principle of least privilege  
   Applications and services should operate with the minimum permissions required, reducing the potential impact of unauthorized access.
-
-
-
