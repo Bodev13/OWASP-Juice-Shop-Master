@@ -88,8 +88,8 @@ This challenge has a difficulty rating of 1 star (1/6).
 
    Within the help section, references to a **Score Board** were identified, indicating the existence of an internal page that provides an overview of challenges and progress.
 
-   ![Score Board reference in help section](screenshots/helpBS1.png)
-   ![Additional Score Board reference](screenshots/helpBS2.png)
+   ![Score Board reference in help section](screenshots/helpSB1.png)
+   ![Additional Score Board reference](screenshots/helpSB2.png)
 
 4. To verify whether the Score Board is referenced elsewhere in the application, the browser’s developer tools were opened and the HTML content was searched for the term **Score Board**
 
