@@ -43,7 +43,7 @@ http://127.0.0.1:3000
 ```
 ## Usage
 
-1. Nodejs install
+1. ### Node.js and npm installation
 
 ```bash
 sudo apt update
