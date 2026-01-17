@@ -6,8 +6,23 @@ The objective of this challenge is to discover the hidden Score Board page of th
 
 ---
 
+## Disclaimer
+
+This challenge was solved in a controlled lab environment and is documented strictly for educational purposes.
+The OWASP Juice Shop application must be started locally before performing this challenge (see Quickstart section of the main repository).  
+
+The interaction is performed entirely through a web browser
+
+The application can be started using
+
+```bash
+npm start
+```
+---
+
 ## Table of Contents
 
+- [Disclaimer](#disclaimer)
 - [Challenge Name](#challenge-name)
 - [Challenge Description](#challenge-description)
 - [Usage](#usage)
@@ -18,7 +33,7 @@ The objective of this challenge is to discover the hidden Score Board page of th
 - [Result](#result)
 - [Security Impact](#security-impact)
 - [Mitigation](#mitigation)
-- [Disclaimer](#disclaimer)
+
 
 ---
 
@@ -30,7 +45,11 @@ Find the Score Board
 
 ## Usage
 
-This challenge is performed in a local or controlled lab environment using the OWASP Juice Shop application. The user interacts with the application through a web browser to manually access undocumented endpoints and analyze exposed application functionality.
+1. Start the OWASP Juice Shop application locally.
+2. Open a web browser.
+3. Navigate to `http://127.0.0.1:3000`.
+4. Ensure the application is running and accessible.
+5. Follow the steps described in the **Step-by-Step Solution** section to reproduce the challenge.
 
 ---
 
@@ -42,7 +61,8 @@ https://go.screenpal.com/watch/cOV6rinrwxN
 
 ## Vulnerability Category
 
-Information Disclosure.
+Information Disclosure
+
 This challenge has a difficulty rating of 1 star (1/6).
 
 ---
@@ -56,12 +76,43 @@ This challenge has a difficulty rating of 1 star (1/6).
 
 ## Step-by-Step Solution
 
-1. Start the OWASP Juice Shop application locally on a Kali Linux virtual machine.
-2. Open Mozilla Firefox.
-3. Navigate to the base URL `http://127.0.0.1:3000`.
-4. Manually append `/score-board` to the URL in the browser’s address bar.
-5. Access the hidden Score Board page.
-6. Review the list of all challenges and their completion status.
+1. Open the OWASP Juice Shop application in a web browser and ensure the main page is displayed
+
+   ![OWASP Juice Shop main page with sidebar menu](screenshots/main.png)
+
+2. Open the sidebar menu and select **Help getting started** to review available hints and guidance provided by the application
+
+   ![Help getting started menu entry](screenshots/helpStart.png)
+
+3. Review the displayed hints and challenges
+
+   Within the help section, references to a **Score Board** were identified, indicating the existence of an internal page that provides an overview of challenges and progress.
+
+   ![Score Board reference in help section](screenshots/helpBS1.png)
+   ![Additional Score Board reference](screenshots/helpBS2.png)
+
+4. To verify whether the Score Board is referenced elsewhere in the application, the browser’s developer tools were opened and the HTML content was searched for the term **Score Board**
+
+   The search returned only references from the help section, suggesting that the Score Board page is not directly linked within the application interface.
+
+   ![Search for Score Board in developer tools](screenshots/devTool.png)
+
+5. Based on common web application patterns, potential URL paths were tested manually by appending variations such as `/score`, `/board`, and `/scoreboard` to the base URL.
+
+   These attempts did not return the expected page.
+
+   ![Attempt to access /score](screenshots/score.png)
+   ![Attempt to access /board](screenshots/board.png)
+   ![Attempt to access /scoreboard](screenshots/scoreboard.png)
+
+6. Further analysis of existing application routes revealed that multi-word menu items are often represented using hyphenated paths (e.g. **Photo Wall** → `/photo-wall`).
+
+   Based on this observation, the URL `/score-board` was tested
+
+   ![Successful access to score-board page](screenshots/bingo.png)
+
+7. The Score Board page was successfully accessed without authentication or authorization.  
+   The page exposes a complete overview of challenges and their completion status, confirming that the endpoint is publicly accessible despite not being linked within the application
 
 ---
 
@@ -85,7 +136,3 @@ Exposing the Score Board allows unauthorized users to gain insight into the inte
 - Avoid exposing internal status or debugging pages in production environments.
 
 ---
-
-## Disclaimer
-
-This challenge was solved in a controlled lab environment and is documented strictly for educational purposes.
