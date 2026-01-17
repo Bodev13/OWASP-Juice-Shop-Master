@@ -35,8 +35,6 @@ npm start
 
 ## Usage
 
-## Usage
-
 1. Start the OWASP Juice Shop application locally.
 2. Open a web browser.
 3. Navigate to `http://127.0.0.1:3000`.
