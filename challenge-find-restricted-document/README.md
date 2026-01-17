@@ -52,12 +52,28 @@ Broken Access Control / Directory Listing
 ## Step-by-Step Solution
 
 1. Start the OWASP Juice Shop application locally.
-2. Navigate to the **About Us** page.
-3. Identify a publicly accessible document link pointing to `/ftp/legal.md`.
-4. Manually modify the URL in the browser’s address bar by removing the file name `legal.md`.
-5. Access the `/ftp/` directory directly.
-6. Browse through the available folders and files.
-7. Locate and open the restricted document.
+
+   ![OWASP Juice Shop main screen with sidebar menu opened](screenshots/main_menu.png)
+
+2. Navigate to the **About Us** page via the sidebar menu
+
+   ![Navigation to the About Us page](screenshots/menuAboutUs.png)
+
+3. Identify a publicly accessible document link pointing to `/ftp/legal.md` and click on this link
+
+   ![Identify accessible document](screenshots/aboutUsDoc.png)
+
+4. Manually modify the URL in the browser’s address bar by removing the file name `legal.md`
+
+   ![Modify the URL](screenshots/legalDoc.png)
+
+5. Access the `/ftp/` directory and browse through the folders and files
+
+   ![Access ftp directory](screenshots/ftp.png)
+
+7. Open the restricted document
+
+   ![Open the restricted document](screenshots/confidential)
 
 ---
 
