@@ -42,7 +42,8 @@ https://go.screenpal.com/watch/cOV6rinrwxN
 
 ## Vulnerability Category
 
-Information Disclosure
+Information Disclosure.
+This challenge has a difficulty rating of 1 star (1/6).
 
 ---
 

@@ -7,7 +7,13 @@ The objective of this challenge is to locate a restricted document within the OW
 ## Disclaimer
 
 This challenge was solved in a controlled lab environment and is documented strictly for educational purposes.
+The OWASP Juice Shop application must be started locally before performing this challenge (see Quickstart section of the main repository).  
+The interaction is performed entirely through a web browser.
 
+The application can be started using:
+```bash
+npm start
+```
 ---
 
 ## Table of Contents
@@ -40,6 +46,8 @@ https://go.screenpal.com/watch/cOVDXanrKV3
 
 Broken Access Control / Directory Listing
 
+This challenge has a difficulty rating of 1 star (1/6)
+
 ---
 
 ## Tools Used
@@ -51,15 +59,16 @@ Broken Access Control / Directory Listing
 
 ## Step-by-Step Solution
 
-1. Start the OWASP Juice Shop application locally.
+1. Start the OWASP Juice Shop application locally
 
    ![OWASP Juice Shop main screen with sidebar menu opened](screenshots/main_menu.png)
 
-2. Navigate to the **About Us** page via the sidebar menu
+2. Navigate to the **About Us** page via the sidebar menu, or by manually appending `/about` to the base URL
 
    ![Navigation to the About Us page](screenshots/menuAboutUs.png)
 
-3. Identify a publicly accessible document link pointing to `/ftp/legal.md` and click on this link
+3. While reviewing the content of the **About Us** page, a link to the document `/ftp/legal.md` was identified.  
+The presence of this link suggested that the application exposes files from an internal `/ftp/` directory via the web server
 
    ![Identify accessible document](screenshots/aboutUsDoc.png)
 
@@ -67,11 +76,21 @@ Broken Access Control / Directory Listing
 
    ![Modify the URL](screenshots/legalDoc.png)
 
-5. Access the `/ftp/` directory and browse through the folders and files
+5. Access the `/ftp/` directory directly to check whether directory listing is enabled. Browse through the available folders and files to identify accessible resources
 
    ![Access ftp directory](screenshots/ftp.png)
 
-7. Open the restricted document
+6. Based on the assumption that sensitive documents are often stored as text files, the application was analyzed to identify pages that reference textual content.
+
+   The **About Us** section appeared to be a likely candidate, as it commonly contains legal or informational documents.  
+   Within this section, a link to the file `/ftp/legal.md` was identified.
+
+   The URL structure indicated that the file was served from an `/ftp/` directory, suggesting that additional files might be accessible.  
+   By manually navigating to the `/ftp/` directory, directory listing was confirmed to be enabled.
+
+   During this process, the file `acquisitions.md` was discovered and opened.  
+   This document represents a restricted internal resource, which should not be publicly accessible without authentication or authorization
+
 
    ![Open the restricted document](screenshots/confidential.png)
 
@@ -79,21 +98,53 @@ Broken Access Control / Directory Listing
 
 ## Result
 
-The application allowed unrestricted access to internal files and directories without authentication or authorization checks.
+The application allowed unrestricted access to internal files and directories without authentication or authorization checks.  
+By manually modifying URLs, it was possible to browse the internal `/ftp/` directory and access sensitive documents that were not intended for public exposure
+
 
 ---
 
 ## Security Impact
 
-Due to missing access control, unauthorized users can browse internal directories and access sensitive files. This may lead to information disclosure, data leaks, and potential legal or compliance issues.
+Due to missing access control mechanisms, unauthorized users are able to freely browse internal directories and access sensitive files exposed via the web server.
+
+In a real-world scenario, this vulnerability could lead to the disclosure of:
+- internal legal documents (e.g. contracts, acquisition plans, compliance reports),
+- configuration or backup files containing credentials or system information,
+- internal business data not intended for public access.
+
+In the worst-case scenario, an attacker could:
+- gather sensitive information to support further targeted attacks,
+- exploit leaked credentials to gain deeper access to internal systems,
+- cause violations of data protection regulations such as GDPR,
+- expose the organization to legal consequences, financial penalties, and reputational damage.
+
+From a business perspective, such a vulnerability represents a critical risk, as it enables unauthorized access to internal resources without any technical barrier.
+
+Such findings would typically be classified as high severity in a penetration testing report due to the potential business and compliance impact
+
 
 ---
 
 ## Mitigation
 
-- Disable directory listing on the web server.
-- Implement proper access control and authorization checks.
-- Restrict public access to internal directories such as `/ftp/`.
-- Validate and sanitize all user-accessible file paths.
+- Disable directory listing on the web server  
+  Ensure that directory indexing is disabled so that attackers cannot browse directory contents when no index file is present.  
+  This prevents unintended exposure of internal files through misconfigured paths.
+
+- Implement proper access control and authorization checks  
+  Access to sensitive resources must be validated on the server side, ensuring that only authenticated and authorized users can access protected files and endpoints.  
+  A clear role-based access control (RBAC) model should be applied to define which users are allowed to access specific resources.
+
+- Do not expose internal directories via the web server  
+  Internal directories such as `/ftp/` should not be directly accessible through the web server configuration and should only be accessed through controlled application logic.
+
+- Apply network-level security controls  
+  Firewalls, reverse proxies, or network segmentation can be used to restrict access to internal services and limit traffic to trusted networks only.  
+  This reduces the attack surface even in case of application-level misconfigurations.
+
+- Follow the principle of least privilege  
+  Applications and services should operate with the minimum permissions required, reducing the potential impact of unauthorized access.
+
 
 
