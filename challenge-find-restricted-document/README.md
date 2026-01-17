@@ -4,6 +4,10 @@
 
 The objective of this challenge is to locate a restricted document within the OWASP Juice Shop application by analyzing publicly accessible links and manually manipulating URLs using a web browser.
 
+## Disclaimer
+
+This challenge was solved in a controlled lab environment and is documented strictly for educational purposes.
+
 ---
 
 ## Table of Contents
@@ -76,8 +80,4 @@ Due to missing access control, unauthorized users can browse internal directorie
 - Restrict public access to internal directories such as `/ftp/`.
 - Validate and sanitize all user-accessible file paths.
 
----
 
-## Disclaimer
-
-This challenge was solved in a controlled lab environment and is documented strictly for educational purposes.

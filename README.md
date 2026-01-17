@@ -27,7 +27,7 @@ The following prerequisites describe the environment and tools used during the c
 
 - Kali Linux
 - Mozilla Firefox
-- Node.js and npm installed
+- [Node.js and npm installed](#nodejs-install)
 - OWASP Juice Shop cloned locally
 
 ## Quickstart
@@ -45,7 +45,7 @@ http://127.0.0.1:3000
 ```
 ## Usage
 
-1. Install required packages
+1. Nodejs install
 
 ```bash
 sudo apt update
